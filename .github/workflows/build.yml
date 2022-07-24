@@ -1,0 +1,17 @@
+name: Build
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: git clone
+      - name: docker build
+        run: ./build.sh
+      - name: docker login
+        run: docker login --username ${{secrets.DOCKERHUB_USERNAME}} --password ${{secrets.DOCKERHUB_TOKEN}}
+        if: github.ref == 'refs/heads/master'
+      - name: docker push
+        run: ./push.sh
+        if: github.ref == 'refs/heads/master'
