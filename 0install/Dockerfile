@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-RUN apt-get update && apt-get install -y curl gnupg zip unzip bzip2 xz-utils libicu67
+RUN apt-get update && apt-get install -y curl gnupg zip unzip bzip2 xz-utils zstd libicu67
 
 ARG ZEROINSTALL_VERSION
 RUN curl https://get.0install.net/0install.sh | sh -s -- install local
