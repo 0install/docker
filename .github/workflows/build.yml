@@ -8,8 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        name: git clone
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          show-progress: false
       - name: docker build
         run: ./build.sh
       - name: docker login
